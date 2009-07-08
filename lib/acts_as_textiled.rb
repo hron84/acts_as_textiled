@@ -3,6 +3,7 @@ module Err
     module Textiled
       include ActionView::Helpers::TagHelper
       include ActionView::Helpers::TextHelper
+      include ActionView::Helpers::UrlHelper
 
       def self.included(klass)
         klass.extend ClassMethods
@@ -33,11 +34,11 @@ module Err
                     CGI.escapeHTML(match)
                   end
 
+                  str = RedCloth.new(str, Array(ruled[attribute])).to_html
+
                   str = auto_link(str, :all) do |txt|
                     txt.size < 55 ? txt : truncate(txt, :length => 50)
                   end
-
-                  str = RedCloth.new(str, Array(ruled[attribute])).to_html
 
                   # preserve whitespace for haml
                   str = str.chomp("\n").gsub(/\n/, '&#x000A;').gsub(/\r/, '')
