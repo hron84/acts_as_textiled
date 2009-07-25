@@ -7,7 +7,7 @@ code otherwise).
 
 No database modifications are needed.
 
-You need RedCloth, of course.  And Rails.
+You need RedCloth, CodeRay and redclothcoderay of course.  And Rails.
 
 == Usage
 
@@ -47,6 +47,11 @@ You need RedCloth, of course.  And Rails.
 
   >> story.description
   => "<p>I <em>know</em>!</p>"
+  
+  >> story.description = "<source:ruby>puts \"hello, world\"</source>"
+  => "<source:ruby>puts \"hello, world\"</source>"
+  >> story.description 
+  => "<code class=\"inline_code\">puts <span class=\"s\"><span class=\"dl\">&quot;</span><span class=\"k\">hello, world</span><span class=\"dl\">&quot;</span></span></code>"
 
 == Different Modes
 
